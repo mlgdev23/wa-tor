@@ -34,3 +34,10 @@ While simulation is running:
     Pause for a short time (to control simulation speed)
 
 End of simulation loop
+
+In Creature model:
+The all_creatures array will hold all the fish and sharks.  These objects have all the pertinent data, including location on the display grid
+
+In Wator:
+There is a grid 2-dimensional array that will identify each cell as a fish, shark, or ocean. Create a World class that will initialize this array with the empty ocean and populate it with the beginning number of fish and sharks, randomly.  The grid just holds 0, 1, or 2 in each located, and paints the corresponding color accordingly.
+
