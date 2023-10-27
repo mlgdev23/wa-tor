@@ -70,22 +70,19 @@ def main():
     
     world_initialized = False
     
+    # populate world with random creatures
     while not world_initialized:
         screen.fill(BACKGROUND)
         brand_new_world = world.init_world_grid()
-        for fish in range(NUM_FISH):
+        for _ in range(NUM_FISH):
             world.populate_ocean(brand_new_world, "f")
-        for shark in range(NUM_SHARK):
+        for _ in range(NUM_SHARK):
             world.populate_ocean(brand_new_world, "s")
         world_initialized = True
-    
-    # populate with random
-    ipdb.set_trace()
     
     # simulation loop
     running = True
     while running:
-        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
