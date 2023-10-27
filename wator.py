@@ -2,7 +2,7 @@ from creature import Creature
 from fish import Fish
 from shark import Shark
 
-import pygame, random, ipdb
+import pygame, random, ipdb, sys
 
 BACKGROUND = (255, 255, 255)
 OCEAN = (79, 66, 181)
@@ -22,6 +22,8 @@ WINDOW_Y = 750    # 4:3 aspect ratio for 2D
 
 NUM_FISH = 120 # these will eventually come from command line
 NUM_SHARK = 40
+NUM_CHRONONS = 1
+FRAMERATE = 20
 
 class World():
     
@@ -47,6 +49,9 @@ class World():
                 
     
     # update world - drawing function based on current grid contents
+    def update_world(self, current_grid, screen):
+        ipdb.set_trace()
+    
     
     # initialize world with 0's (ocean)
     def init_world_grid(self):
@@ -67,10 +72,12 @@ def main():
     
     # create World - the world_grid represents what's to be displayed on screen
     world = World()
+    clock = pygame.time.Clock()
+    chronons = NUM_CHRONONS
     
-    world_initialized = False
     
     # populate world with random creatures
+    world_initialized = False
     while not world_initialized:
         screen.fill(BACKGROUND)
         brand_new_world = world.init_world_grid()
@@ -86,10 +93,19 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+                
+        if chronons > 0:
+            # DO: check the status of each creature - pass reference to present ocean_grid
+            world.update_world(brand_new_world, screen)
+            chronons -= 1
     
-        pygame.display.update()
+        pygame.display.flip()
+        clock.tick(FRAMERATE)
+       
         
-        
+    pygame.quit()
+    sys.exit()
+    
 if __name__ == '__main__':
     main()
 
